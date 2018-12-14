@@ -10,7 +10,8 @@ namespace rock3r {
 
     class GameObject {
         public:
-            GameObject(const char* textureAsset, SDL_Renderer* r);
+            GameObject() = default;
+            GameObject(const char* textureAsset, int x, int y);
             ~GameObject() = default;
             void update();
             void render();
@@ -18,7 +19,6 @@ namespace rock3r {
             int xPos;
             int yPos;
             SDL_Texture* objectTexture;
-            SDL_Renderer* renderer;
             SDL_Rect startRect, endRect; 
     };
 }

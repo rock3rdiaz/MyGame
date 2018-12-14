@@ -3,14 +3,16 @@
 
 namespace rock3r {
 
-    GameObject::GameObject(const char* textureAsset, SDL_Renderer* r) {
-        renderer = r;
-        objectTexture = TextureManager::loadTexture(textureAsset, r);  
+    GameObject::GameObject(const char* textureAsset, int x, int y) {
+        cout << "GameObject created ..." << endl;
+        xPos = x;
+        yPos = y;
+        objectTexture = TextureManager::loadTexture(textureAsset);  
     };
 
     void GameObject::update() {
-        xPos = 0;
-        yPos = 0;
+        xPos++;
+        yPos++;
 
         startRect.h = 32;
         startRect.w = 32;
@@ -24,7 +26,7 @@ namespace rock3r {
     };
 
     void GameObject::render() {
-        SDL_RenderCopy(renderer, objectTexture, &startRect, &endRect);
+        SDL_RenderCopy(Game::renderer, objectTexture, &startRect, &endRect);
     };
 }
 

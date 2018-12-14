@@ -3,10 +3,9 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
-#include <SDL2/SDL_image.h>
 #include <filesystem>
-#include "TextureManager.h"
-#include "GameObject.h"
+#include "Map.h"
+#include "Components.h"
 
 using namespace std;
 
@@ -14,7 +13,7 @@ namespace rock3r {
 
     class Game {
         public:
-            Game();
+            Game() = default;
             ~Game() = default;
             void init(const char* title, int posX, int posY, int width, int height, bool fullScreen);
             void handleEvents();
@@ -22,11 +21,11 @@ namespace rock3r {
             void render();
             void clean();
             inline bool running() { return isRunning; }
+            static inline SDL_Renderer* renderer = nullptr;
         private:
             bool isRunning;
             SDL_Window* window;
-            SDL_Renderer* renderer;
-            GameObject playerObject;
+            Map map;
     };
 }
 

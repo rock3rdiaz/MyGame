@@ -2,6 +2,9 @@
 
 namespace rock3r {
 
+    Manager manager;
+    auto& player(manager.addEntity());
+    
     void Game::init(const char* title, int posX, int posY, int width, int height, bool fullScreen) {
         if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
             cout << "SDL initialized ..." << endl;
@@ -18,8 +21,12 @@ namespace rock3r {
                     isRunning = true;
                 }
             }
+           
             //cout << "path: " << filesystem::current_path() << endl;
-            playerObject = GameObject("../assets/individuals/adventurer-attack1-01.png", renderer);      
+           
+            map = Map();        
+            player.addComponent<PositionComponent>();
+            player.addComponent<SpriteComponent>("../assets/individuals/adventurer-attack1-01.png");      
         } else {
             cout << "SDL does not hace initialized ..." << ", " << SDL_GetError() << endl;
             isRunning = false;
@@ -27,12 +34,14 @@ namespace rock3r {
     }
 
     void Game::update() {
-        playerObject.update();
+        manager.refresh();
+        manager.update();
     }
 
     void Game::render() {
         SDL_RenderClear(renderer);
-        playerObject.render();
+        map.drawMap();
+        manager.draw();
         SDL_RenderPresent(renderer);
     }
 
@@ -40,7 +49,6 @@ namespace rock3r {
         SDL_DestroyWindow(window);   
         SDL_DestroyRenderer(renderer);
         SDL_Quit();
-        cout << "Game destroyed ..." << endl;
     }
 
     void Game::handleEvents() {

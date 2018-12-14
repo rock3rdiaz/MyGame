@@ -13,7 +13,7 @@ int main() {
     int frameTime;
 
     Game game;
-    game.init("rocker", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 480, 300, false);
+    game.init("rocker", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 680, 480, false);
 
     while(game.running()) {
 
