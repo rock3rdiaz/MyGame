@@ -1,8 +1,7 @@
 #ifndef H_MAP_H
 #define H_MAP_H
 
-#include <SDL2/SDL.h>
-#include <iostream>
+#include "Game.h"
 
 using namespace std;
 

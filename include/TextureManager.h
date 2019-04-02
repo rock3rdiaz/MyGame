@@ -1,9 +1,6 @@
 #ifndef H_TEXTURE_MANAGER_H
 #define H_TEXTURE_MANAGER_H
 
-#include <SDL2/SDL.h>
-#include <iostream>
-#include <SDL2/SDL_image.h>
 #include "Game.h"
 
 using namespace std;

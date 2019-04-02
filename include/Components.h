@@ -1,9 +1,8 @@
 #ifndef H_COMPONENTS_H
 #define H_COMPONENTS_H
 
-#include <iostream>
 #include "ECS.h"
-#include "PositionComponent.h"
+#include "TransformComponent.h"
 #include "SpriteComponent.h"
 
 using namespace std;

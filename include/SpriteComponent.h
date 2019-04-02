@@ -10,25 +10,29 @@ namespace rock3r {
 
     class SpriteComponent : public Component {
         private:
-            PositionComponent* position;
+            TransformComponent* transform;
             SDL_Texture* texture;
             SDL_Rect startRect, endRect;
         public:
             SpriteComponent() = default;
             SpriteComponent(const char* path) {
-                texture = TextureManager::loadTexture(path);
+                setText(path);
             };
 
+            void setText(const char* path) {
+                texture = TextureManager::loadTexture(path);
+            }
+
             void init() override {
-                position = &entity->getComponent<PositionComponent>();
+                transform = &entity->getComponent<TransformComponent>();
                 startRect.x = startRect.y = 0;
                 startRect.w = startRect.h = 32;
                 endRect.w = endRect.h = 64;
             };
 
             void update() override {
-                endRect.x = position->x();
-                endRect.y = position->y();
+                endRect.x = (int) transform->position.x;
+                endRect.y = (int) transform->position.y;
             };
 
             void draw() override {

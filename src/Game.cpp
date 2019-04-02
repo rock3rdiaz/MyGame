@@ -1,9 +1,14 @@
-#include "Game.h"
+#include "../include/Game.h"
+#include "../include/TextureManager.h"
+#include "../include/Map.h"
+#include "../include/Components.h"
+#include "../include/Vector2D.h"
 
 namespace rock3r {
-
+    Map* map;
     Manager manager;
     auto& player(manager.addEntity());
+    SDL_Renderer* Game::renderer = nullptr;
     
     void Game::init(const char* title, int posX, int posY, int width, int height, bool fullScreen) {
         if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -24,8 +29,8 @@ namespace rock3r {
            
             //cout << "path: " << filesystem::current_path() << endl;
            
-            map = Map();        
-            player.addComponent<PositionComponent>();
+            map = new Map();        
+            player.addComponent<TransformComponent>();
             player.addComponent<SpriteComponent>("../assets/individuals/adventurer-attack1-01.png");      
         } else {
             cout << "SDL does not hace initialized ..." << ", " << SDL_GetError() << endl;
@@ -36,11 +41,15 @@ namespace rock3r {
     void Game::update() {
         manager.refresh();
         manager.update();
+        player.getComponent<TransformComponent>().position.add(Vector2D(5, 0));
+        if(player.getComponent<TransformComponent>().position.x > 100) {
+            player.getComponent<SpriteComponent>().setText("../assets/individuals/adventurer-air-attack3-loop-01.png");
+        }
     }
 
     void Game::render() {
         SDL_RenderClear(renderer);
-        map.drawMap();
+        map->drawMap();
         manager.draw();
         SDL_RenderPresent(renderer);
     }

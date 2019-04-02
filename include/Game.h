@@ -3,9 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <iostream>
-#include <filesystem>
-#include "Map.h"
-#include "Components.h"
+#include <SDL2/SDL_image.h>
 
 using namespace std;
 
@@ -21,11 +19,10 @@ namespace rock3r {
             void render();
             void clean();
             inline bool running() { return isRunning; }
-            static inline SDL_Renderer* renderer = nullptr;
+            static SDL_Renderer* renderer;
         private:
-            bool isRunning;
+            bool isRunning = false;
             SDL_Window* window;
-            Map map;
     };
 }
 

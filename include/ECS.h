@@ -35,7 +35,7 @@ namespace rock3r {
         public:
             Entity* entity;
 
-            virtual~Component() = default;
+            virtual~Component() {};
             virtual void init() {};
             virtual void update() {};
             virtual void draw() {};
