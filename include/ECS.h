@@ -11,6 +11,7 @@
 using namespace std;
 
 namespace rock3r {
+    
     class Component;
     class Entity;
     

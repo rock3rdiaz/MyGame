@@ -4,11 +4,14 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <SDL2/SDL_image.h>
+#include <vector>
 
 using namespace std;
 
 namespace rock3r {
 
+    class ColliderComponent;
+    
     class Game {
         public:
             Game() = default;
@@ -20,6 +23,8 @@ namespace rock3r {
             void clean();
             inline bool running() { return isRunning; }
             static SDL_Renderer* renderer;
+            static SDL_Event event;
+            static vector<ColliderComponent*> colliders;
         private:
             bool isRunning = false;
             SDL_Window* window;

@@ -40,6 +40,12 @@ namespace rock3r {
 
     }
 
+    Map::~Map() {
+        SDL_DestroyTexture(dirt); 
+        SDL_DestroyTexture(grass); 
+        SDL_DestroyTexture(water); 
+    }
+
     void Map::loadMap(int arr[20][25]) {
         for(int row = 0; row < 20; row ++) {
             for(int col = 0; col < 25; col++) {

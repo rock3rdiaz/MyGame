@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "Components.h"
+#include "TextureManager.h"
 
 using namespace std;
 
@@ -19,6 +20,10 @@ namespace rock3r {
                 setText(path);
             };
 
+            ~SpriteComponent() {
+                SDL_DestroyTexture(texture);
+            }
+
             void setText(const char* path) {
                 texture = TextureManager::loadTexture(path);
             }
@@ -26,13 +31,15 @@ namespace rock3r {
             void init() override {
                 transform = &entity->getComponent<TransformComponent>();
                 startRect.x = startRect.y = 0;
-                startRect.w = startRect.h = 32;
-                endRect.w = endRect.h = 64;
+                startRect.w = transform->width;
+                startRect.h = transform->height;
             };
 
             void update() override {
-                endRect.x = (int) transform->position.x;
-                endRect.y = (int) transform->position.y;
+                endRect.x = static_cast<int>(transform->position.x);
+                endRect.y = static_cast<int>(transform->position.y);
+                endRect.w = transform->width * transform->scale;
+                endRect.h = transform->height * transform->scale;
             };
 
             void draw() override {

@@ -64,6 +64,20 @@ namespace rock3r {
         return this->divide(vec);
     }
     
+    Vector2D& Vector2D::operator*(const int& i) {
+        this->x *= i;
+        this->y *= y;
+
+        return *this;
+    }
+
+    Vector2D& Vector2D::zero() {
+        this->x = 0;
+        this->y = 0;
+
+        return *this;
+    }
+    
     ostream& operator<<(ostream& stream, const Vector2D& vec) {
         stream << "(" << vec.x << "," << vec.y << ")";
         return stream;

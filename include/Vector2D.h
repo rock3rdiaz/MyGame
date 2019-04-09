@@ -30,6 +30,9 @@ namespace rock3r {
             Vector2D& operator*=(const Vector2D& vec);
             Vector2D& operator/=(const Vector2D& vec);
 
+            Vector2D& operator*(const int& i);
+            Vector2D& zero();
+
             friend ostream& operator<<(ostream& strea, const Vector2D& vec);
     };
 }

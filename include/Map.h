@@ -10,7 +10,7 @@ namespace rock3r {
     class Map {
         public:
             Map();
-            ~Map() = default;
+            ~Map();
             void loadMap(int arr[20][25]);
             void drawMap();
         private:
