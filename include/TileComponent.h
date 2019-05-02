@@ -25,13 +25,13 @@ namespace rock3r {
                 tileId = id;
                 switch(tileId) {
                     case 0:
-                        path = "../assets/water.png";
-                        break;
-                    case 1:
                         path = "../assets/dirt.png";
                         break;
+                    case 1:
+                        path = "../assets/grass.png";
+                        break;
                     case 2:
-                       path = "../assets/grass.png";
+                       path = "../assets/water.png";
                        break;
                     default:
                         break;

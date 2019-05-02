@@ -14,9 +14,6 @@ namespace rock3r {
     auto& wall(manager.addEntity());
     SDL_Renderer* Game::renderer = nullptr;
     vector<ColliderComponent*> Game::colliders;
-    auto& tile0(manager.addEntity());
-    auto& tile1(manager.addEntity());
-    auto& tile2(manager.addEntity());
     
     void Game::init(const char* title, int posX, int posY, int width, int height, bool fullScreen) {
         if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -36,12 +33,7 @@ namespace rock3r {
             }
            
             map = new Map();
-
-            tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
-            tile1.addComponent<TileComponent>(250, 250, 32, 32, 1);
-            tile1.addComponent<ColliderComponent>("dirt");
-            tile2.addComponent<TileComponent>(150, 150, 32, 32, 2);
-            tile2.addComponent<ColliderComponent>("grass");
+            Map::loadMap("../assets/map.map", 16, 16);
 
             player.addComponent<TransformComponent>(2);
             player.addComponent<SpriteComponent>("../assets/individuals/adventurer-attack1-01.png");      
@@ -76,6 +68,11 @@ namespace rock3r {
         SDL_DestroyWindow(window);   
         SDL_DestroyRenderer(renderer);
         SDL_Quit();
+    }
+
+    void Game::addTile(int id, int x, int y) {
+        auto& tile(manager.addEntity());
+        tile.addComponent<TileComponent>(x, y, 32, 32, id);
     }
 
     void Game::handleEvents() {

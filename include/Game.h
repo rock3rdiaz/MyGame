@@ -21,6 +21,7 @@ namespace rock3r {
             void update();
             void render();
             void clean();
+            static void addTile(int id, int x, int y);
             inline bool running() { return isRunning; }
             static SDL_Renderer* renderer;
             static SDL_Event event;
